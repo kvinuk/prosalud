@@ -1,0 +1,22 @@
+<%= form_for @schedule do |f| %>
+<%= f.label :start_time, "Hora inicial" %>
+<%= f.text_field :start_time, class: "timepicker"%>
+<%= f.label :end_time, "Hora final" %>
+<%= f.text_field :end_time, class: "timepicker"%>
+<%= f.label :week_day, "Dia" %>
+<%= f.select(:week_day, Schedule.work_days) %>
+<%= f.submit "Crear" %>
+<% end %>
+
+
+
+<script type="text/javascript">
+	settings = {
+		interval: 60,
+		min : [7, 0],
+		max : [19,0]
+	}
+	$('.timepicker').pickatime(settings);
+
+	
+</script>
