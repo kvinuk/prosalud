@@ -1,0 +1,7 @@
+<h1>Channels</h1>
+<% @channels.each do |channel| %>
+	<h2><%= channel.name %></h2>
+	<%= link_to "Mostrar", channel_path(channel) %>
+	<%= link_to "Edit", edit_channel_path(channel) %>
+	<%= link_to "Destroy", channel_path(channel), method: :delete %>
+<% end %>
