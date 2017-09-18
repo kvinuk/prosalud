@@ -1,8 +1,5 @@
 class User < ApplicationRecord
-  rolify :role_cname => 'Therapist'
-  rolify :role_cname => 'Receptionist'
-  rolify :role_cname => 'Admin'
-  
+  rolify
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
