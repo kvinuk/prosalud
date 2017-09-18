@@ -1,5 +1,6 @@
 class Schedule < ApplicationRecord
-
+  resourcify
+  rolify role_cname: 'Admin'
 	validates :start_time, :end_time, :week_day, presence: true
   validates_time :start_time, :end_time
   validates_time :start_time, on_or_after: '7:00 am',

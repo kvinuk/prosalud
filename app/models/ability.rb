@@ -12,7 +12,6 @@ class Ability
         can :manage, :Appointment
     elsif user.has_role? :therapist
         can :read, :Appointment
-
     end
 
     # Define abilities for the passed in user here. For example:
