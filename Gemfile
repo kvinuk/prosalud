@@ -45,10 +45,17 @@ gem 'bootstrap-sass', '~> 3.3.6'
 #TimePicker
 gem 'pickadate-rails'
 
+#Time validation
+gem 'validates_timeliness', '~> 4.0'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'rspec-rails', '~> 3.6'
+  gem 'shoulda-matchers', '~> 3.1'
+  gem 'factory_girl_rails'
+  gem 'ffaker'
 end
 
 group :development do
