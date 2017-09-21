@@ -7,6 +7,7 @@ RSpec.describe Schedule, type: :model do
   it { should validate_presence_of(:start_time) }
   it { should validate_presence_of(:end_time) }
   it { should validate_presence_of(:week_day) }
+  it { should belong_to(:therapist) }
 
   it "should validate start time is before end time" do 
     schedule = FactoryGirl.build(:schedule)
