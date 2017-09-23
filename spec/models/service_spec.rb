@@ -15,7 +15,4 @@ RSpec.describe Service, type: :model do
   it { should validate_numericality_of(:initial_price).is_greater_than_or_equal_to(0) }
   it { should validate_numericality_of(:subsequent_price).is_greater_than_or_equal_to(0)}
   it { should validate_numericality_of(:community_price).is_greater_than_or_equal_to(0)}
-  
-
-
 end
