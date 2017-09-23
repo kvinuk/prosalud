@@ -1,5 +1,5 @@
 class Channel < ApplicationRecord
-	has_many :clients
+  has_many :clients
 
-	validates :name, presence: true
+  validates :name, presence: true
 end
