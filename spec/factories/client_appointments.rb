@@ -1,9 +1,9 @@
 FactoryGirl.define do
   factory :client_appointment do
-    date "2017-09-23"
-    status "MyString"
-    comments "MyText"
-    client nil
-    therapist nil
+    date { Date.today - rand(1000).days }
+    week_day { ["Pendiente", "Finalizada"].sample }
+    comments { FFaker::Lorem.paragraphs }
+    client { FactoryGirl.build :client }
+    therapist { FactoryGirl.build :therapist }
   end
 end
