@@ -19,17 +19,16 @@ RSpec.describe Schedule, type: :model do
 
   it "should validate start time is after opening time" do 
     schedule = FactoryGirl.build(:schedule)
-    schedule.start_time = schedule.start_time - (rand(5)+1).hours
+    schedule.start_time = schedule.start_time - (rand(5) + 1).hours
     schedule.save
     expect(schedule.errors.full_messages.include?("Start time Debe ser despues del horario de apertura")).to eq(true)
   end
 
   it "should validate end time is before closing time" do 
     schedule = FactoryGirl.build(:schedule)
-    schedule.end_time = schedule.end_time + (rand(3)+1).hours
+    schedule.end_time = schedule.end_time + (rand(3) + 1).hours
     schedule.save
     expect(schedule.errors.full_messages.include?("End time Debe ser antes de cerrar")).to eq(true)
   end
-
 
 end
