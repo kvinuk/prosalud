@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170923182803) do
+ActiveRecord::Schema.define(version: 20170923185145) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,38 @@ ActiveRecord::Schema.define(version: 20170923182803) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "client_appointments", force: :cascade do |t|
+    t.datetime "date"
+    t.string   "status"
+    t.text     "comments"
+    t.integer  "client_id"
+    t.integer  "therapist_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["client_id"], name: "index_client_appointments_on_client_id", using: :btree
+    t.index ["therapist_id"], name: "index_client_appointments_on_therapist_id", using: :btree
+  end
+
+  create_table "clients", force: :cascade do |t|
+    t.string   "fname"
+    t.string   "lname"
+    t.string   "folio"
+    t.string   "street"
+    t.string   "neighborhood"
+    t.string   "city"
+    t.integer  "zipcode"
+    t.string   "house_phone"
+    t.string   "mobile_phone"
+    t.integer  "age"
+    t.string   "tutor_name"
+    t.date     "contact_date"
+    t.text     "observations"
+    t.integer  "channel_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["channel_id"], name: "index_clients_on_channel_id", using: :btree
   end
 
   create_table "roles", force: :cascade do |t|
@@ -57,6 +89,19 @@ ActiveRecord::Schema.define(version: 20170923182803) do
     t.index ["user_id"], name: "index_therapists_on_user_id", using: :btree
   end
 
+  create_table "treatments", force: :cascade do |t|
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "client_id"
+    t.integer  "therapist_id"
+    t.integer  "service_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["client_id"], name: "index_treatments_on_client_id", using: :btree
+    t.index ["service_id"], name: "index_treatments_on_service_id", using: :btree
+    t.index ["therapist_id"], name: "index_treatments_on_therapist_id", using: :btree
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -81,6 +126,12 @@ ActiveRecord::Schema.define(version: 20170923182803) do
     t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
   end
 
+  add_foreign_key "client_appointments", "clients"
+  add_foreign_key "client_appointments", "therapists"
+  add_foreign_key "clients", "channels"
   add_foreign_key "schedules", "therapists"
   add_foreign_key "therapists", "users"
+  add_foreign_key "treatments", "clients"
+  add_foreign_key "treatments", "services"
+  add_foreign_key "treatments", "therapists"
 end
