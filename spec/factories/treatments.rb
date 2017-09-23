@@ -1,9 +1,9 @@
 FactoryGirl.define do
   factory :treatment do
-    start_date "2017-09-23"
-    end_date "2017-09-23"
-    client nil
-    therapist nil
-    service nil
+    start_date {Date.today - (rand(100) + 50).days}
+    end_date {Date.today - rand(49).days}
+    client {FactoryGirl.build :client}
+    therapist {FactoryGirl.build :therapist}
+    service {FactoryGirl.build :service}
   end
 end
