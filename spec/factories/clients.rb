@@ -1,18 +1,18 @@
 FactoryGirl.define do
   factory :client do
-    fname "MyString"
-    lname "MyString"
-    folio "MyString"
-    street "MyString"
-    neighborhood "MyString"
-    city "MyString"
-    zipcode ""
-    house_phone "MyString"
-    mobile_phone "MyString"
-    age ""
-    tutor_name "MyString"
-    contact_date "2017-09-23"
-    observations "MyText"
-    channel nil
+    fname { FFaker::NameMX.first_name }
+    lname { FFaker::NameMX.last_name }
+    folio { "PX-#{rand(100000)}-#{rand(1000)}" }
+    street { FFaker::AddressMX.street_address }
+    neighborhood { FFaker::AddressMX.neighborhood }
+    city { FFaker::AddressMX.municipality }
+    zipcode { FFaker.AddressMX.postal_code }
+    house_phone { FFaker::PhoneNumber.short_phone_number }
+    mobile_phone { FFaker::PhoneNumber.short_phone_number }
+    age { rand(100) }
+    tutor_name { FFaker::NameMX.full_name }
+    contact_date { Date.today - rand(1000).days }
+    observations { FFaker::Lorem.paragraph }
+    channel { FactoryGirl.build :channel }
   end
 end
