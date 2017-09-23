@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-  RSpec.describe Treatment, type: :model do
+RSpec.describe Treatment, type: :model do
   let(:treatment) {FactoryGirl.build(:treatment)}
   subject {treatment}
 
@@ -32,11 +32,4 @@ require 'rails_helper'
     treatment.end_date = Date.today + 1.days
     expect(treatment.save).to eq(true)
   end
-
-  
-
-  
-
- 
-
 end
