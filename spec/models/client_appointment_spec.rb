@@ -10,7 +10,7 @@ RSpec.describe ClientAppointment, type: :model do
   it { should validate_presence_of(:date) }
 
   validates_date :date, :on_or_after => :today,
-                        :on_or_after_message => 'date must be after today',
+                        :on_or_after_message => 'date must be after today'
 
 
 end
