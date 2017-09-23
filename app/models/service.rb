@@ -1,4 +1,3 @@
-class Service < ApplicationRecord
-	
-	has_many :treatments
+class Service < ApplicationRecord 
+  has_many :treatments
 end

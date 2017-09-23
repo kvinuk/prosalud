@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :client do
     fname { FFaker::NameMX.first_name }
     lname { FFaker::NameMX.last_name }
-    folio { "PX-#{rand(100000)}-#{rand(1000)}" }
+    folio { "PX-#{rand(100_000)}-#{rand(1_000)}" }
     street { FFaker::Address.street_address }
     neighborhood { FFaker::Address.neighborhood }
     city { FFaker::AddressMX.municipality }
@@ -11,7 +11,7 @@ FactoryGirl.define do
     mobile_phone { FFaker::PhoneNumber.short_phone_number }
     age { rand(100) }
     tutor_name { FFaker::NameMX.full_name }
-    contact_date { Date.today - rand(1000).days }
+    contact_date { Date.today - rand(1_000).days }
     observations { FFaker::Lorem.paragraph }
     channel { FactoryGirl.build :channel }
   end

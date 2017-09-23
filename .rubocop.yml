@@ -59,7 +59,14 @@ Style/BlockLength:
 Style/CaseIndentation:
   Enabled: false
 
+Style/ClassAndModuleChildren:
+  Exclude: 
+    - app/controllers/users/*
+
 Style/EmptyLinesAroundAccessModifier:
+  Enabled: false
+
+Style/EmptyMethod:
   Enabled: false
 
 Style/EmptyLinesAroundBlockBody:
