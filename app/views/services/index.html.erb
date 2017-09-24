@@ -1,0 +1,7 @@
+<h1>Servicios</h1>
+<% @services.each do |service| %>
+  <h2><%= service.name %></h2>
+  <%= link_to "Mostrar", service_path(service) %>
+  <%= link_to "Editar", edit_service_path(service) %>
+  <%= link_to "Borrar", service_path(service), method: :delete %>
+<% end %>

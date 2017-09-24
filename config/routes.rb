@@ -6,5 +6,6 @@ Rails.application.routes.draw do
   resources :channels
   resources :schedules, except:[:show]
   resources :clients
+  resources :services
   
 end
