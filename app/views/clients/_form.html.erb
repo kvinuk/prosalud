@@ -1,0 +1,82 @@
+<%= form_for @client do |f| %>
+<div class="row">
+  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
+    <%= f.label :fname, "Nombre" %>
+    <%= f.text_field :fname, class: "form-control", placeholder: "María"  %>
+  </div>
+  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
+    <%= f.label :lname, "Apellido" %>
+    <%= f.text_field :lname, class: "form-control", placeholder: "La del barrio"  %>
+  </div>
+  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
+    <%= f.label :folio, "Folio" %>
+    <%= f.text_field :folio, class: "form-control", placeholder: "PX-123132-123"  %>
+  </div>
+  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
+    <%= f.label :street, "Calle y número" %>
+    <%= f.text_field :street, class: "form-control", placeholder: "Av. Garza Sada #4152" %>
+  </div>
+  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
+    <%= f.label :neighborhood, "Colonia" %>
+    <%= f.text_field :neighborhood, class: "form-control", placeholder: "Tecnólogico"  %>
+  </div>
+  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
+    <%= f.label :city, "Ciudad" %>
+    <%= f.text_field :city, class: "form-control", placeholder: "Monterrey"  %>
+  </div>
+  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
+    <%= f.label :zipcode, "Código postal" %>
+    <%= f.number_field :zipcode, class: "form-control", placeholder: "67328"  %>
+  </div>
+  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
+    <%= f.label :house_phone, "Teléfono de casa" %>
+    <%= f.text_field :house_phone, class: "form-control", placeholder: "83129402"  %>
+  </div>
+  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
+    <%= f.label :mobile_phone, "Celular" %>
+    <%= f.text_field :mobile_phone, class: "form-control", placeholder: "8130492894"  %>
+  </div>
+  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
+    <%= f.label :age, "Edad" %>
+    <%= f.number_field :age, class: "form-control", placeholder: "45"  %>
+  </div>
+  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
+    <%= f.label :tutor_name, "Nombre de familiar o referencia" %>
+    <%= f.text_field :tutor_name, class: "form-control", placeholder: "José del barrio"  %>
+  </div>
+  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
+    <%= f.label :contact_date, "Fecha de contacto" %>
+    <%= f.text_field :contact_date, class: "form-control datepicker", placeholder: "2011/11/2"  %>
+  </div>
+  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
+    <%= f.label :channel_id, "Forma de contacto" %>
+    <%= f.select( :channel_id, Channel.all.collect {|c| [ c.name, c.id ] }, {}, class:"form-control")  %>
+  </div>
+  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
+    <%= f.label :observations, "Observacions" %>
+    <%= f.text_area :observations, class: "form-control", placeholder: "Observaciones"  %>
+  </div>
+</div>
+<%= f.submit ( f.object.new_record? ? "Crear" : "Editar"), class: "btn btn-primary" %>
+<% end %>
+
+<script>
+  $(".datepicker").pickadate({
+    weekdaysShort: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"],
+    showMonthsShort: true,
+    monthsFull: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+    hiddenSuffix: '',
+    max: new Date(<%= Date.today.year %>, <%= Date.today.month - 1 %>, <%= Date.today.day %>),
+    onStart: function ()
+      {
+        <% if @client.contact_date %>
+        var date = new Date(<%= @client.contact_date.year %>, <%= @client.contact_date.month - 1 %>, <%= @client.contact_date.day %>);
+        this.set('select', [date.getFullYear(), date.getMonth(), date.getDate()]);
+        <% end %>
+      },
+  })
+  var fakedata = ['test1','test2','test3','test4','ietsanders']
+  $('#autocomplete').autocomplete({
+    source: fakedata
+  })
+</script>
