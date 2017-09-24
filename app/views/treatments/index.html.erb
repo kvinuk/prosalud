@@ -1,0 +1,7 @@
+<h1>Treatments</h1>
+<% @treatments.each do |treatment| %>
+  <h2><%= treatment.start_date %></h2>
+  <%= link_to "Mostrar", treatment_path(treatment) %>
+  <%= link_to "Edit", edit_treatment_path(treatment) %>
+  <%= link_to "Destroy", treatment_path(treatment), method: :delete %>
+<% end %>

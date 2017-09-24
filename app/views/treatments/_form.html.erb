@@ -1,0 +1,52 @@
+<%= form_for @treatment do |f| %>
+  <div class="row">
+    <div class="col-xs-4 col-sm-4 col-lg-4 form-group">
+      <%= f.label :start_date, "Día inicial" %>
+      <%= f.text_field :start_date, class: "datepicker form-control"%>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-4 col-sm-4 col-lg-4 form-group">
+      <%= f.label :end_date, "Día final" %>
+      <%= f.text_field :end_date, class: "datepicker form-control"%>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-4 col-sm-4 col-lg-4 form-group">
+      <%= f.label "Cliente" %>
+      <%= f.select(:client_id, @clients) %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-4 col-sm-4 col-lg-4 form-group">
+      <%= f.label "Terapeuta" %>
+      <%= f.select(:therapist_id, @therapists) %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-4 col-sm-4 col-lg-4 form-group">
+      <%= f.label "Servicio" %>
+      <%= f.select(:service_id, @services) %>
+    </div>
+  </div>
+
+  <%= f.submit "Crear" %>
+<% end %>
+
+
+
+<script type="text/javascript">
+  $('.datepicker').pickadate({
+  weekdaysShort: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
+  showMonthsShort: true,
+  monthsFull: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+  dateFormat: "yyyy/mm/dd",
+  hiddenSuffix: ''
+})
+
+  
+</script>
