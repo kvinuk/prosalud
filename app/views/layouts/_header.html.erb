@@ -13,20 +13,18 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
+      <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
 
           <li class="<%= 'active' if params[:controller] == 'clients' %>"> <%= link_to "Clientes", channels_path %> </li>
           <li class="<%= 'active' if params[:controller] == 'therapists' %>"><%= link_to "Terapeutas", channels_path %></li>
           <li class="<%= 'active' if params[:controller] == 'appointments' %>"><%= link_to "Citas", channels_path %></li>
+          <li><%= link_to raw('<span class="glyphicon glyphicon-log-in"></span> Log Out'), destroy_user_session_path, method: :delete %> </li>
 
         <% else %>
           <li><%= link_to 'Login', new_user_session_path %></li>
           <li><%= link_to 'Join', new_user_registration_path %></li>
         <% end %>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to raw('<span class="glyphicon glyphicon-log-in"></span> Log Out'), destroy_user_session_path, method: :delete %> </li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
