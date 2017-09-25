@@ -1,15 +1,8 @@
 <%= form_for @service do |f| %>
   <div class="row">
     <div class="form-group">
-      <%= f.label :start_date, "Día inicial" %>
-      <%= f.text_field :start_date, class: "datepicker form-control"%>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="form-group">
-      <%= f.label :nombre, "Nombre" %>
-      <%= f.text_field :nombre %>
+      <%= f.label :name, "Nombre de servicio" %>
+      <%= f.text_field :name %>
     </div>
   </div>
 

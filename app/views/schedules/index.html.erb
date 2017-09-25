@@ -1,0 +1,9 @@
+<h1>Horarios</h1>
+<%= link_to "Agrear Nuevo", new_schedule_path %>
+<% @schedules.each do |schedule| %>
+  <h2><%= schedule.week_day %></h2>
+  <h3><%= schedule.start_date %> - <%= schedule.end_date %></h3>
+  <%= link_to "Mostrar", schedule_path(schedule) %>
+  <%= link_to "Editar", edit_schedule_path(schedule) %>
+  <%= link_to "Borrar", schedule_path(schedule), method: :delete %>
+<% end %>
