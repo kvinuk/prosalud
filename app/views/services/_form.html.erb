@@ -1,0 +1,38 @@
+<%= form_for @service do |f| %>
+  <div class="row">
+    <div class="form-group">
+      <%= f.label :start_date, "Día inicial" %>
+      <%= f.text_field :start_date, class: "datepicker form-control"%>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group">
+      <%= f.label :nombre, "Nombre" %>
+      <%= f.text_field :nombre %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group">
+      <%= f.label :initial_price, "Precio Inicial" %>
+      <%= f.text_field :initial_price %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group">
+      <%= f.label :subsequent_price, "Precio Subsequente" %>
+      <%= f.text_field :subsequent_price %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group">
+      <%= f.label :community_price, "Precio de la comunidad" %>
+      <%= f.text_field :community_price %>
+    </div>
+  </div>
+
+  <%= f.submit "Crear" %>
+<% end %>

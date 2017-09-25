@@ -41,6 +41,7 @@ gem 'cancancan', '~> 2.0'
 gem "rolify"
 #Styles
 gem 'bootstrap-sass', '~> 3.3.6'
+gem 'jquery-ui-sass-rails'
 
 #TimePicker
 gem 'pickadate-rails'

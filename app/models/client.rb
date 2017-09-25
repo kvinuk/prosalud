@@ -10,4 +10,12 @@ class Client < ApplicationRecord
 
   validates_date :contact_date, on_or_before: -> { Date.today },
                                 on_or_before_message: "debe ser antes de mañana"
+
+  def full_name
+    fname + " " + lname
+  end
+
+  def full_address
+    street + ", " + neighborhood + " C.P. " + zipcode.to_s + " " + city
+  end
 end
