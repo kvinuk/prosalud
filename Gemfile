@@ -49,6 +49,10 @@ gem 'pickadate-rails'
 #Time validation
 gem 'validates_timeliness', '~> 4.0'
 
+#Booking
+gem 'acts_as_bookable'
+gem 'ice_cube'
+
 
 
 group :development, :test do
