@@ -5,5 +5,7 @@ FactoryGirl.define do
     comments { FFaker::Lorem.paragraphs }
     client { FactoryGirl.build :client }
     therapist { FactoryGirl.build :therapist }
+    treatment { FactoryGirl.build :treatment }
+    service { FactoryGirl.build :service }
   end
 end

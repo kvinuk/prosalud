@@ -4,6 +4,5 @@ FactoryGirl.define do
     end_date {Date.today - rand(49).days}
     client {FactoryGirl.build :client}
     therapist {FactoryGirl.build :therapist}
-    service {FactoryGirl.build :service}
   end
 end

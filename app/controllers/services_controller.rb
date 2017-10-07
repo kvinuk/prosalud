@@ -1,5 +1,5 @@
 class ServicesController < ApplicationController
-	before_action :set_service, only: [:edit, :update, :show, :destroy]
+  before_action :set_service, only: [:edit, :update, :show, :destroy]
   load_and_authorize_resource
 
   def index
