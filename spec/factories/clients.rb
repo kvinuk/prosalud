@@ -14,5 +14,6 @@ FactoryGirl.define do
     contact_date { Date.today - rand(1_000).days }
     observations { FFaker::Lorem.paragraph }
     channel { FactoryGirl.build :channel }
+    institution { FFaker::Company.name }
   end
 end

@@ -4,7 +4,7 @@ RSpec.describe Service, type: :model do
   let(:service) {FactoryGirl.build(:service)}
   subject {service}
 
-  it { should have_many(:treatments) }
+  it { should have_many(:client_appointments)}
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:initial_price) }
   it { should validate_presence_of(:subsequent_price) }

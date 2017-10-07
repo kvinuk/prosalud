@@ -19,6 +19,7 @@ RSpec.describe Client, type: :model do
   it { should validate_presence_of(:age) }
   it { should validate_presence_of(:tutor_name) }
   it { should validate_presence_of(:contact_date) }
+  it { should validate_presence_of(:institution) }
   it { should validate_numericality_of(:zipcode).is_greater_than_or_equal_to(0) }
   it { should validate_numericality_of(:zipcode).only_integer }
   it { should validate_numericality_of(:age).is_greater_than_or_equal_to(0) }
