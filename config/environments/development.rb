@@ -12,7 +12,7 @@ Rails.application.configure do
   # Show full error reports.
   config.consider_all_requests_local = true
 
-  config.time_zone = 'Eastern Time (US & Canada)'
+  config.time_zone = 'Monterrey'
   config.active_record.default_timezone = :local # Or :utc
 
   # Enable/disable caching. By default caching is disabled.
