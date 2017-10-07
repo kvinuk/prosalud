@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171002173547) do
+ActiveRecord::Schema.define(version: 20171007173256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,8 +44,12 @@ ActiveRecord::Schema.define(version: 20171002173547) do
     t.integer  "therapist_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.integer  "treatment_id"
+    t.integer  "service_id"
     t.index ["client_id"], name: "index_client_appointments_on_client_id", using: :btree
+    t.index ["service_id"], name: "index_client_appointments_on_service_id", using: :btree
     t.index ["therapist_id"], name: "index_client_appointments_on_therapist_id", using: :btree
+    t.index ["treatment_id"], name: "index_client_appointments_on_treatment_id", using: :btree
   end
 
   create_table "clients", force: :cascade do |t|
@@ -65,7 +69,15 @@ ActiveRecord::Schema.define(version: 20171002173547) do
     t.integer  "channel_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.string   "institution"
     t.index ["channel_id"], name: "index_clients_on_channel_id", using: :btree
+  end
+
+  create_table "consulting_rooms", force: :cascade do |t|
+    t.string   "name"
+    t.text     "schedule"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "roles", force: :cascade do |t|
@@ -88,6 +100,16 @@ ActiveRecord::Schema.define(version: 20171002173547) do
     t.index ["therapist_id"], name: "index_schedules_on_therapist_id", using: :btree
   end
 
+  create_table "service_appointments", force: :cascade do |t|
+    t.integer  "client_id"
+    t.text     "comments"
+    t.integer  "service_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_service_appointments_on_client_id", using: :btree
+    t.index ["service_id"], name: "index_service_appointments_on_service_id", using: :btree
+  end
+
   create_table "services", force: :cascade do |t|
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
@@ -104,16 +126,23 @@ ActiveRecord::Schema.define(version: 20171002173547) do
     t.index ["user_id"], name: "index_therapists_on_user_id", using: :btree
   end
 
+  create_table "treatment_appointments", force: :cascade do |t|
+    t.integer  "client_id"
+    t.text     "comments"
+    t.string   "service"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_treatment_appointments_on_client_id", using: :btree
+  end
+
   create_table "treatments", force: :cascade do |t|
     t.date     "start_date"
     t.date     "end_date"
     t.integer  "client_id"
     t.integer  "therapist_id"
-    t.integer  "service_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.index ["client_id"], name: "index_treatments_on_client_id", using: :btree
-    t.index ["service_id"], name: "index_treatments_on_service_id", using: :btree
     t.index ["therapist_id"], name: "index_treatments_on_therapist_id", using: :btree
   end
 
@@ -142,11 +171,15 @@ ActiveRecord::Schema.define(version: 20171002173547) do
   end
 
   add_foreign_key "client_appointments", "clients"
+  add_foreign_key "client_appointments", "services"
   add_foreign_key "client_appointments", "therapists"
+  add_foreign_key "client_appointments", "treatments"
   add_foreign_key "clients", "channels"
   add_foreign_key "schedules", "therapists"
+  add_foreign_key "service_appointments", "clients"
+  add_foreign_key "service_appointments", "services"
   add_foreign_key "therapists", "users"
+  add_foreign_key "treatment_appointments", "clients"
   add_foreign_key "treatments", "clients"
-  add_foreign_key "treatments", "services"
   add_foreign_key "treatments", "therapists"
 end
