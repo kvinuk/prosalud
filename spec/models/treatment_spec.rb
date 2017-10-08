@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Treatment, type: :model do
-  let(:treatment) {FactoryGirl.build(:treatment)}
+  let(:treatment) {FactoryGirl.create(:treatment)}
   subject {treatment}
 
   it { should validate_presence_of(:start_date) }

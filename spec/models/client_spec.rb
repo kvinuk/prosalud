@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Client, type: :model do
-  let(:client) {FactoryGirl.build(:client)}
+  let(:client) {FactoryGirl.create(:client)}
   subject {client}
 
   it { should belong_to(:channel) }
