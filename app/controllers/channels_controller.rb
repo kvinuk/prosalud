@@ -16,7 +16,7 @@ class ChannelsController < ApplicationController
   def create
     @channel = Channel.new(channel_params)
     if @channel.save
-      redirect_to new_channel_path
+      redirect_to channels_path
     else
       flash.now[:danger] = @channel.errors.full_messages
       render :new
@@ -28,7 +28,7 @@ class ChannelsController < ApplicationController
 
   def update
     if @channel.update(channel_params)
-      redirect_to new_channel_path
+      redirect_to channels_path
     else
       flash.now[:danger] = @channel.errors.full_messages
       render :edit

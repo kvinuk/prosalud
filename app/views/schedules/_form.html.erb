@@ -1,13 +1,20 @@
 <%= form_for @schedule do |f| %>
-<%= f.label :start_time, "Hora inicial" %>
-<%= f.text_field :start_time, class: "timepicker"%>
-<%= f.label :end_time, "Hora final" %>
-<%= f.text_field :end_time, class: "timepicker"%>
-<%= f.label :week_day, "Dia" %>
-<%= f.select(:week_day, Schedule.work_days) %>
-<%= f.submit "Crear" %>
+<div class="row">
+  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
+    <%= f.label :week_day, "Día" %>
+    <%= f.select(:week_day, Schedule.work_days,{},{class: "form-control"})  %>
+  </div>
+  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
+    <%= f.label :start_time, "Hora Inicial" %>
+    <%= f.text_field :start_time, class: "timepicker form-control", placeholder: "9:00"  %>
+  </div>
+  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
+    <%= f.label :end_time, "Hora Final" %>
+    <%= f.text_field :end_time, class: "timepicker form-control", placeholder: "14:00"  %>
+  </div>
+</div>
+<%= f.submit ( f.object.new_record? ? "Crear" : "Editar"), class: "btn btn-primary" %>
 <% end %>
-
 
 
 <script type="text/javascript">

@@ -20,7 +20,8 @@
             <th>Contacto de referencia</th>
             <th>Fecha de contacto</th>
             <th>Forma de contacto</th>
-            <th>Acciones</th>
+            <th>Institución</th>
+            <th style="text-align:center">Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -35,9 +36,10 @@
               <td><%= client.tutor_name %></td>
               <td><%= client.contact_date %></td>
               <td><%= client.channel.name %></td>
-              <td>
+              <td><%= client.institution %></td>
+              <td align="center">
                   <%= link_to edit_client_path(client), class: "btn btn-default" do %><%= image_tag "rsz_edit.png", class: "img-responsive" %><% end %>
-                  <%= link_to client_path(client), class: "btn btn-default", method: :delete, data:{ confirm: "¿Estas seguro?" } do %><%= image_tag "rsz_trash.png", class: "img-responsive" %><% end %>
+                  <%= link_to client_path(client), class: "btn btn-default", method: :delete, data:{ confirm: "¿Estas seguro que desea eliminar a " + client.fname + "?" } do %><%= image_tag "rsz_trash.png", class: "img-responsive" %><% end %>
               </td>
             </tr>
           <% end %>
@@ -48,7 +50,7 @@
 </div>
 
 <script>
-  $('table').DataTable({
+  $('.table').DataTable({
     // ajax: ...,
     // autoWidth: false,
     // pagingType: 'full_numbers',

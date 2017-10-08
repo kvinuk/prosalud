@@ -16,7 +16,7 @@ class ClientsController < ApplicationController
   def create
     @client = Client.new(client_params)
     if @client.save
-      redirect_to new_client_path
+      redirect_to clients_path
     else
       flash.now[:danger] = @client.errors.full_messages
       render :new
@@ -28,7 +28,7 @@ class ClientsController < ApplicationController
 
   def update
     if @client.update(client_params)
-      redirect_to new_client_path
+      redirect_to clients_path
     else
       flash.now[:danger] = @client.errors.full_messages
       render :edit
@@ -44,7 +44,7 @@ class ClientsController < ApplicationController
   def client_params
     params.require(:client).permit(:fname, :lname, :folio, :street, :neighborhood, :city, 
                                    :zipcode, :house_phone, :mobile_phone, :age, :tutor_name, 
-                                   :contact_date, :observations, :channel_id)
+                                   :contact_date, :observations, :channel_id, :institution)
   end
 
   def set_client
