@@ -12,7 +12,6 @@ class TreatmentsController < ApplicationController
   def new
     @treatment = Treatment.new
     @clients = Client.all
-    @services = Service.all
     @therapists = Therapist.all
   end
 

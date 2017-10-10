@@ -3,7 +3,7 @@ class Treatment < ApplicationRecord
   belongs_to :therapist
   has_many :client_appointments
 
-  validates :start_date, :end_date, :client, :therapist, :service, presence: true
+  validates :start_date, :end_date, :client, :therapist, presence: true
 
   validates_date :start_date, before: :end_date,
                               before_message: 'La fecha debe ser antes de la fecha de terminación'

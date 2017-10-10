@@ -16,21 +16,15 @@
   <div class="row">
     <div class="col-xs-4 col-sm-4 col-lg-4 form-group">
       <%= f.label "Cliente" %>
-      <%= f.select(:client_id, @clients) %>
+      <%= f.select(:client_id, @clients.collect {|c| [ c.fname + " " + c.lname ] }) %>
+
     </div>
   </div>
 
   <div class="row">
     <div class="col-xs-4 col-sm-4 col-lg-4 form-group">
       <%= f.label "Terapeuta" %>
-      <%= f.select(:therapist_id, @therapists) %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-xs-4 col-sm-4 col-lg-4 form-group">
-      <%= f.label "Servicio" %>
-      <%= f.select(:service_id, @services) %>
+      <%= f.select(:therapist_id, @therapists.collect {|t| [ t.name] }) %>
     </div>
   </div>
 

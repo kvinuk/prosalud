@@ -1,4 +1,5 @@
 <h1>Treatments</h1>
+<%= link_to "Agrear Nuevo", new_treatment_path %>
 <% @treatments.each do |treatment| %>
   <h2><%= treatment.start_date %></h2>
   <%= link_to "Mostrar", treatment_path(treatment) %>
