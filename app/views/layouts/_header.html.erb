@@ -20,6 +20,7 @@
           <li class="<%= 'active' if params[:controller] == 'services' %>"><%= link_to "Servicios", services_path %></li>
           <li class="<%= 'active' if params[:controller] == 'channels' %>"><%= link_to "Metodos de contacto", channels_path %></li>
           <li class="<%= 'active' if params[:controller] == 'schedules' %>"><%= link_to "Horarios", schedules_path %></li>
+          <li class="<%= 'active' if params[:controller] == 'client_appointments' %>"><%= link_to "Citas", client_appointments_path %></li>
           <li><%= link_to raw('<span class="glyphicon glyphicon-log-in"></span> Log Out'), destroy_user_session_path, method: :delete %> </li>
 
         <% else %>

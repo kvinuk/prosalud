@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   resources :schedules, except:[:show]
   resources :clients
   resources :services
-  resources :client_appointments
+  resources :client_appointments, except:[:show]
+  resources :consulting_rooms, except:[:show]
+  get "client_appointments/available_rooms", to: 'client_appointments#available_rooms', as: 'available_rooms'
+
   
 end

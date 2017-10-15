@@ -36,6 +36,12 @@ class ClientAppointmentsController < ApplicationController
     @client_appointment.destroy
   end
 
+  def available_rooms
+    date = "#{params[:year]}-#{params[:month]}-#{params[:day]} #{params[:hour]}:#{params[:minutes]}"
+    @consulting_rooms = ConsultingRoom.available_rooms(Time.zone.parse(date))
+    @therapists = Therapist.available_therapists(Time.zone.parse(date))
+  end
+
   private
 
   def client_appointment_params
