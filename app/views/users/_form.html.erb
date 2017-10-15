@@ -1,0 +1,29 @@
+<%= form_for @user do |f| %>
+<div class="row">
+  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
+    <%= f.label :name, "Nombre" %>
+    <%= f.text_field :name, class: "form-control", placeholder: "Pablito"  %>
+  </div>
+  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
+    <%= f.label :email, "Email" %>
+    <%= f.email_field :email, class: "form-control", placeholder: "email@email.com"  %>
+  </div>
+  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
+    <%= f.label :password, "Contraseña" %>
+    <%= f.password_field :password, class: "form-control", placeholder: "Contraseña"  %>
+  </div>
+  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
+    <%= f.label :password_confirmation, "Confirmar Contraseña" %>
+    <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Confirmar contraseña"  %>
+  </div>
+  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
+    <%= f.label :role_type, "Tipo" %>
+    <%= f.select(:role_type, User.types,{},{class: "form-control"})  %>
+  </div>  
+</div>
+<%= f.submit ( f.object.new_record? ? "Crear" : "Editar"), class: "btn btn-primary" %>
+<% end %>
+
+<script>
+
+</script>

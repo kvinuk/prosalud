@@ -12,5 +12,6 @@ Rails.application.routes.draw do
   resources :schedules, except:[:show]
   resources :clients
   resources :services
+  resources :users, except:[:show]
   
 end
