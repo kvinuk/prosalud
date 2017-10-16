@@ -1,8 +1,8 @@
 <%= form_for @client_appointment do |f| %>
   <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group">
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 form-group">
       <%= f.label :client_id, "Folio cliente" %>
-      <%= f.select :client_id, Client.all.collect { |c| [ c.folio, c.id ] }, { include_blank: false }, class: "chosen-select" %>
+      <%= f.select :client_id, Client.all.collect { |c| [ "#{c.full_name} (#{c.folio})", c.id ] }, { include_blank: false }, class: "chosen-select form-control" %>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group" id="fecha">
       <%= f.label :date, "Fecha" %>
@@ -10,27 +10,27 @@
     </div>
     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
       <%= f.label :consulting_room_id, "Consultorio" %>
-      <%= f.select :consulting_room_id, ConsultingRoom.all.collect { |c| [ c.name, c.id ] }, { include_blank: false }, class: "chosen-select", id: "consulting_rooms" %>
+      <%= f.select :consulting_room_id, ConsultingRoom.all.collect { |c| [ c.name, c.id ] }, { include_blank: false }, class: "chosen-select form-control", id: "consulting_rooms" %>
     </div>
     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
       <%= f.label :therapist_id, "Terapeuta" %>
-      <%= f.select :therapist_id, Therapist.all.collect { |c| [ c.user.name, c.id ] }, { include_blank: false }, class: "chosen-select", id: "therapists" %>
+      <%= f.select :therapist_id, Therapist.all.collect { |c| [ c.user.name, c.id ] }, { include_blank: false }, class: "chosen-select form-control", id: "therapists" %>
     </div>
     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
       <%= f.label :service_id, "Servicio" %>
-      <%= f.select :service_id, Service.all.collect { |c| [ c.name, c.id ] }, { include_blank: true }, class: "chosen-select" %>
+      <%= f.select :service_id, Service.all.collect { |c| [ c.name, c.id ] }, { include_blank: true }, class: "chosen-select form-control" %>
     </div>
     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
       <%= f.label :treatment_id, "Tratamiento" %>
-      <%= f.select :treatment_id, Treatment.all.collect { |c| [ c.id, c.id ] }, { include_blank: true }, class: "chosen-select" %>
+      <%= f.select :treatment_id, Treatment.all.collect { |c| [ c.id, c.id ] }, { include_blank: true }, class: "chosen-select form-control" %>
     </div>
     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
       <%= f.label :status, "Estatus" %>
-      <%= f.select :status, ["Pendiente", "Cerrado"], { include_blank: false }, class: "chosen-select" %>
+      <%= f.select :status, ["Pendiente", "Cerrado"], { include_blank: false }, class: "chosen-select form-control" %>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group">
       <%= f.label :comments, "Comentarios" %>
-      <%= f.text_area :comments, class: "form-control", placeholder: "Comentarios"  %>
+      <%= f.text_area :comments, class: "form-control form-control", placeholder: "Comentarios"  %>
     </div>
   </div>
   <%= f.submit ( f.object.new_record? ? "Crear" : "Editar"), class: "btn btn-primary" %>
