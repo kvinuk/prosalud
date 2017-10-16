@@ -18,13 +18,15 @@ class User < ApplicationRecord
   def update_role
     case role_type
       when "Administrador"
-        puts "A"
+        self.add_role :admin
       when "Recepcionista"
-        puts "R"
+        self.add_role :receptionist
       when "Psicologo"
-        puts "P" 
+        self.add_role :therapist
+        Therapist.create(user: self)
       when "Nutriologo"
-        puts "N" 
+        self.add_role :therapist 
+        Therapist.create(user: self)
     end
   end
 
