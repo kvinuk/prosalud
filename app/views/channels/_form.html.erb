@@ -1,5 +1,9 @@
 <%= form_for @channel do |f| %>
-<%= f.label :name, "Tipo de Canal" %>
-<%= f.text_field :name %>
-<%= f.submit "Crear" %>
+<div class="row">
+  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
+    <%= f.label :name, "Tipo de Canal" %>
+    <%= f.text_field :name, class: "form-control", placeholder: "Página Web"  %>
+  </div>
+</div>
+<%= f.submit ( f.object.new_record? ? "Crear" : "Editar"), class: "btn btn-primary" %>
 <% end %>

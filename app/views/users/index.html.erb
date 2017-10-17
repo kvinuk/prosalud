@@ -1,8 +1,8 @@
 <div class="container">
-  <h1>Formas de Contacto</h1>
+  <h1>Usuarios</h1>
   <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <%= link_to "Agrear Nuevo", new_channel_path, class: "btn btn-primary" %>
+      <%= link_to "Agrear Nuevo", new_user_path, class: "btn btn-primary" %>
     </div>
   </div>
   <br>
@@ -12,16 +12,20 @@
         <thead>
           <tr>
             <th>Nombre</th>
+            <th>Correo Electrónico</th>
+            <th>Tipo</th>
             <th style="text-align:center">Acciones</th>
           </tr>
         </thead>
         <tbody>
-          <% @channels.each do |channel| %>
+          <% @users.each do |user| %>
             <tr>
-              <td style="width:80%"><%= channel.name %></td>
+              <td><%= user.name %></td>
+              <td><%= user.email %></td>
+              <td><%= user.role_type %></td>
               <td align="center">
-                  <%= link_to edit_channel_path(channel), class: "btn btn-default" do %><%= image_tag "rsz_edit.png", class: "img-responsive" %><% end %>
-                  <%= link_to channel_path(channel), class: "btn btn-default", method: :delete, data:{ confirm: "¿Estas seguro que desea eliminar la forma " + channel.name + "?" } do %><%= image_tag "rsz_trash.png", class: "img-responsive" %><% end %>
+                  <%= link_to edit_user_path(user), class: "btn btn-default" do %><%= image_tag "rsz_edit.png", class: "img-responsive" %><% end %>
+                  <%= link_to user_path(user), class: "btn btn-default", method: :delete, data:{ confirm: "¿Estas seguro que desea eliminar a " + user.name + "?" } do %><%= image_tag "rsz_trash.png", class: "img-responsive" %><% end %>
               </td>
             </tr>
           <% end %>

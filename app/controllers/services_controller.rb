@@ -16,7 +16,7 @@ class ServicesController < ApplicationController
   def create
     @service = Service.new(service_params)
     if @service.save
-      redirect_to new_service_path
+      redirect_to services_path
     else
       flash.now[:danger] = @service.errors.full_messages
       render :new
@@ -28,7 +28,7 @@ class ServicesController < ApplicationController
 
   def update
     if @service.update(service_params)
-      redirect_to new_service_path
+      redirect_to services_path
     else
       flash.now[:danger] = @service.errors.full_messages
       render :edit
