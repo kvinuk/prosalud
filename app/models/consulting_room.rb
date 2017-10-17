@@ -1,9 +1,10 @@
-class Therapist < ApplicationRecord
-  belongs_to :user
-  has_many :schedules
+class ConsultingRoom < ApplicationRecord
   has_many :client_appointments
 
-  def self.available_therapists(reservation_date)
+  validates :name, :room_type, presence: true
+  validates :name, uniqueness: true
+
+  def self.available_rooms(reservation_date)
     all.select{ |room| room.available_at?(reservation_date) }
   end
 

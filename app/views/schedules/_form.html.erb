@@ -1,16 +1,20 @@
 <%= form_for @schedule do |f| %>
 <div class="row">
-  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
-    <%= f.label :week_day, "Día" %>
-    <%= f.select(:week_day, Schedule.work_days,{},{class: "form-control"})  %>
+  <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group">
+    <%= f.label :week_day, "Día de la semana" %>
+    <%= f.select :week_day, Schedule.work_days, {}, class: "form-control" %>
   </div>
-  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
-    <%= f.label :start_time, "Hora Inicial" %>
-    <%= f.text_field :start_time, class: "timepicker form-control", placeholder: "9:00"  %>
+  <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group">
+    <%= f.label :start_time, "Hora de inicio" %>
+    <%= f.text_field :start_time, class: "form-control timepicker", placeholder: "Consultorio 1"  %>
   </div>
-  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
-    <%= f.label :end_time, "Hora Final" %>
-    <%= f.text_field :end_time, class: "timepicker form-control", placeholder: "14:00"  %>
+  <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group">
+    <%= f.label :end_time, "Hora de fin" %>
+    <%= f.text_field :end_time, class: "form-control timepicker", placeholder: "Consultorio 1"  %>
+  </div>
+  <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group">
+    <%= f.label :therapist_id, "Terapeuta" %>
+    <%= f.select :therapist_id, Therapist.all.collect { |c| [ c.user.name, c.id ] }, {}, class: "form-control" %>
   </div>
 </div>
 <%= f.submit ( f.object.new_record? ? "Crear" : "Editar"), class: "btn btn-primary" %>
@@ -27,3 +31,4 @@
 
 	
 </script>
+
