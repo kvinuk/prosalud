@@ -4,7 +4,7 @@ class Client < ApplicationRecord
   has_many :client_appointments
 
   validates :fname, :lname, :folio, :street, :neighborhood, :city, :zipcode, :house_phone, 
-            :mobile_phone, :age, :tutor_name, :contact_date, presence: true
+            :mobile_phone, :age, :tutor_name, :contact_date, :institution, presence: true
 
   validates :age, :zipcode, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 

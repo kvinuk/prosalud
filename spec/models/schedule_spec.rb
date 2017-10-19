@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Schedule, type: :model do
-  let(:schedule) {FactoryGirl.build(:schedule)}
+  let(:schedule) {FactoryGirl.create(:schedule)}
   subject {schedule}
 
   it { should validate_presence_of(:start_time) }

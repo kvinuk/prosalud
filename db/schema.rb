@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171007173256) do
+ActiveRecord::Schema.define(version: 20171012173514) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,11 +42,13 @@ ActiveRecord::Schema.define(version: 20171007173256) do
     t.text     "comments"
     t.integer  "client_id"
     t.integer  "therapist_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.integer  "treatment_id"
     t.integer  "service_id"
+    t.integer  "consulting_room_id"
     t.index ["client_id"], name: "index_client_appointments_on_client_id", using: :btree
+    t.index ["consulting_room_id"], name: "index_client_appointments_on_consulting_room_id", using: :btree
     t.index ["service_id"], name: "index_client_appointments_on_service_id", using: :btree
     t.index ["therapist_id"], name: "index_client_appointments_on_therapist_id", using: :btree
     t.index ["treatment_id"], name: "index_client_appointments_on_treatment_id", using: :btree
@@ -71,6 +73,14 @@ ActiveRecord::Schema.define(version: 20171007173256) do
     t.datetime "updated_at",   null: false
     t.string   "institution"
     t.index ["channel_id"], name: "index_clients_on_channel_id", using: :btree
+  end
+
+
+  create_table "consulting_rooms", force: :cascade do |t|
+    t.string   "name"
+    t.string   "room_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "roles", force: :cascade do |t|
@@ -134,6 +144,7 @@ ActiveRecord::Schema.define(version: 20171007173256) do
     t.string   "name"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "role_type"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
@@ -145,6 +156,7 @@ ActiveRecord::Schema.define(version: 20171007173256) do
   end
 
   add_foreign_key "client_appointments", "clients"
+  add_foreign_key "client_appointments", "consulting_rooms"
   add_foreign_key "client_appointments", "services"
   add_foreign_key "client_appointments", "therapists"
   add_foreign_key "client_appointments", "treatments"

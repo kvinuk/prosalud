@@ -1,14 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe Treatment, type: :model do
-  let(:treatment) {FactoryGirl.build(:treatment)}
+  let(:treatment) {FactoryGirl.create(:treatment)}
   subject {treatment}
 
   it { should validate_presence_of(:start_date) }
   it { should validate_presence_of(:end_date) }
   it { should belong_to(:therapist) }
   it { should belong_to(:client) }
-  it { should belong_to(:service) }
+  it { should have_many(:client_appointments)}
 
   it "should validate start date is before end date" do 
     treatment = FactoryGirl.build(:treatment)

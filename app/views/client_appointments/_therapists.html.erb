@@ -1,0 +1,4 @@
+<% therapists.each do |therapist| %>
+<% puts therapist %>
+  <option value="<%= therapist.id %>"><%= therapist.user.name %></option>
+<% end %>

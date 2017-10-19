@@ -24,7 +24,7 @@
   <div class="row">
     <div class="col-xs-4 col-sm-4 col-lg-4 form-group">
       <%= f.label "Terapeuta" %>
-      <%= f.select(:therapist_id, @therapists.collect {|t| [ t.name] }) %>
+      <%= f.select(:therapist_id, @therapists.collect {|c| [ c.id] }) %>
     </div>
   </div>
 
