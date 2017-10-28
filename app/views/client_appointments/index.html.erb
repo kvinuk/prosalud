@@ -18,6 +18,7 @@
             <th>Status</th>
             <th>Servicio</th>
             <th>Comentarios</th>
+            <th>Precio</th>
             <th>Acciones</th>
           </tr>
         </thead>
@@ -31,6 +32,7 @@
               <td><%= client_appointment.status %></td>
               <td><%= client_appointment.service.name || client_appointment.treatment.name %></td>
               <td><%= client_appointment.comments %></td>
+              <td><%= client_appointment.price %></td>
               <td>
                   <%= link_to edit_client_appointment_path(client_appointment), class: "btn btn-default" do %><%= image_tag "rsz_edit.png", class: "img-responsive" %><% end %>
                   <%= link_to client_appointment_path(client_appointment), class: "btn btn-default", method: :delete, data:{ confirm: "¿Estas seguro?" } do %><%= image_tag "rsz_trash.png", class: "img-responsive" %><% end %>

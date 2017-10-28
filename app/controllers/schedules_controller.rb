@@ -1,9 +1,11 @@
 class SchedulesController < ApplicationController
   before_action :set_schedule, only: [:edit, :update, :show, :destroy]
+  before_action :set_therapists, only: [:new, :edit, :create, :update]
   load_and_authorize_resource
   
   def index
     @schedules = Schedule.all
+    @schedules = current_user.therapist.schedules if current_user.has_role? :therapist
   end
 
   def show
@@ -46,6 +48,18 @@ class SchedulesController < ApplicationController
   end
 
   def set_schedule
-    @schedule = Schedule.find(params[:id])
+    if current_user.has_role? :therapist
+      @schedule = current_user.therapist.schedules.find(params[:id])
+    else
+      @schedule = Schedule.find(params[:id])
+    end
+  end
+
+  def set_therapists
+    if current_user.has_role? :therapist
+      @therapists = [current_user.therapist]
+    else
+      @therapists = Therapist.all
+    end
   end
 end
