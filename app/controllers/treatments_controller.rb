@@ -11,8 +11,6 @@ class TreatmentsController < ApplicationController
 
   def new
     @treatment = Treatment.new
-    @clients = Client.all
-    @therapists = Therapist.all
   end
 
   def create
@@ -30,7 +28,7 @@ class TreatmentsController < ApplicationController
 
   def update
     if @treatment.update(treatment_params)
-      redirect_to new_treatment_path
+      redirect_to treatments_path
     else
       flash.now[:danger] = @treatment.errors.full_messages
       render :edit
@@ -39,12 +37,14 @@ class TreatmentsController < ApplicationController
 
   def destroy
     @treatment.destroy
+    redirect_to treatments_path
+
   end
 
   private
 
   def treatment_params
-    params.require(:treatment).permit(:start_date, :end_date, :client, :therapist)
+    params.require(:treatment).permit(:start_date, :end_date, :client_id, :therapist_id)
   end
 
   def set_treatment

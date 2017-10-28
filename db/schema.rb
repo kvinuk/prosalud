@@ -75,7 +75,6 @@ ActiveRecord::Schema.define(version: 20171012173514) do
     t.index ["channel_id"], name: "index_clients_on_channel_id", using: :btree
   end
 
-
   create_table "consulting_rooms", force: :cascade do |t|
     t.string   "name"
     t.string   "room_type"

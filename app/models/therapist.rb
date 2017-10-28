@@ -3,6 +3,10 @@ class Therapist < ApplicationRecord
   has_many :schedules
   has_many :client_appointments
 
+  def name
+    user.name
+  end
+
   def self.available_therapists(reservation_date)
     all.select{ |room| room.available_at?(reservation_date) }
   end
