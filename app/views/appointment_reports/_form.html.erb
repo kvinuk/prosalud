@@ -1,0 +1,13 @@
+<%= form_for @appointment_report do |f| %>
+<div class="row">
+  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
+    <%= f.label :client_assistance, "Asitió Cliente" %>
+    <%= f.select :client_assistance, [["Si", true], ["No", false]].collect{|a| [a[0], a[1]]}, {}, {class: "form-control"} %>
+  </div>
+  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
+    <%= f.label :therapist_assistance, "Asistió Terapeuta" %>
+    <%= f.select :therapist_assistance, [["Si", true], ["No", false]].collect{|a| [a[0], a[1]]}, {}, {class: "form-control"} %>
+  </div>
+</div>
+<%= f.submit ( f.object.new_record? ? "Crear" : "Editar"), class: "btn btn-primary" %>
+<% end %>
