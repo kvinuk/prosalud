@@ -11,4 +11,14 @@ class Service < ApplicationRecord
   validates_numericality_of :subsequent_price
   validates_numericality_of :community_price
 
+  def price(client)
+    if client.folio[0, 2] == "PC"
+      community_price
+    elsif client.client_appointments.count > 0
+      subsequent_price
+    else
+      initial_price
+    end
+  end
+
 end

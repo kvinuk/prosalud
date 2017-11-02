@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_scope :user do
-    root to: "devise/sessions#new"
+    root to: "devise/sessions#new"  
   end
 
   devise_for :users, controllers: {
@@ -12,13 +12,15 @@ Rails.application.routes.draw do
   resources :schedules, except:[:show]
   resources :clients
   resources :services
-  resources :client_appointments
-
+  resources :users, except:[:show]
+  resources :client_appointments, except:[:show]
+  resources :consulting_rooms, except:[:show]
+  get "client_appointments/available_rooms", to: 'client_appointments#available_rooms', as: 'available_rooms'  
   #Google calendar
   get '/redirect', to: 'client_appointments#redirect', as: 'redirect'
   get '/callback', to: 'client_appointments#callback', as: 'callback'
   get '/calendars', to: 'client_appointments#calendars', as: 'calendars'
-  get '/index_calendar', to: 'client_appointments#index_calendar', as: 'index_calendar'
+  get '/sync', to: 'client_appointments#sync', as: 'sync'
   get '/events/:calendar_id', to: 'client_appointments#events', as: 'events', calendar_id: /[^\/]+/
   post '/events/:calendar_id', to: 'client_appointments#new_event', as: 'new_event', calendar_id: /[^\/]+/
 end

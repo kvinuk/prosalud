@@ -42,6 +42,7 @@ gem "rolify"
 #Styles
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'jquery-ui-sass-rails'
+gem 'jquery-datatables-rails', '~> 3.4.0'
 
 #TimePicker
 gem 'pickadate-rails'

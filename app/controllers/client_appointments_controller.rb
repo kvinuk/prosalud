@@ -70,7 +70,7 @@ class ClientAppointmentsController < ApplicationController
 
     session[:authorization] = response
 
-    redirect_to index_calendar_url
+    redirect_to sync_url
   end
 
   def calendars
@@ -102,35 +102,42 @@ class ClientAppointmentsController < ApplicationController
   def sync
     client = Signet::OAuth2::Client.new(client_options)
     client.update!(session[:authorization])
+    @client_appointments = ClientAppointment.all
 
     service = Google::Apis::CalendarV3::CalendarService.new
     service.authorization = client
 
-    @event_list = service.list_events(params[:calendar_id])
+    @calendar_list = service.list_calendar_lists
+    @calendar = @calendar_list.items.first
 
-    @event_list.items.each do |event|
-      service.delete_event(params[:calendar_id], event.id)
-    end 
+    @event_list = service.list_events(@calendar.id)
 
     @client_appointments = ClientAppointment.all
 
     @client_appointments.each do |appointment|
-      date_time = appointment.date
-      # date = params[:date]
-      # date_end = (date.to_time + 1.hours).to_datetime
+      unless appointment.event_id.blank?
+        @get_event = service.get_event(@calendar.id, appointment.event_id)
+        unless @get_event.status == 'cancelled'
+          service.delete_event(@calendar.id, appointment.event_id)
+        end
+        appointment.update_attribute(:event_id,nil)
+        # puts 'delete event'+appointment.event_id.blank?
+      end
+      date_time = DateTime.parse(appointment.date.to_s)
 
-
-      name_summary = appointment.full_name
+      name_summary = appointment.client.full_name
 
       event = Google::Apis::CalendarV3::Event.new({
-        start: Google::Apis::CalendarV3::EventDateTime.new(date_time: date_time),
-        end: Google::Apis::CalendarV3::EventDateTime.new(date_time: date_time + 1.hours),
-        summary: name_summary
-    })
+          start: Google::Apis::CalendarV3::EventDateTime.new(date_time: date_time),
+          end: Google::Apis::CalendarV3::EventDateTime.new(date_time: date_time + 1.hours),
+          summary: name_summary
+      })
+
+      @new_event = service.insert_event(@calendar.id, event)
+      appointment.update_attribute(:event_id,@new_event.id)
     end
 
-    service.insert_event(params[:calendar_id], event)
-
+    render :index
 
   end
 
@@ -159,6 +166,13 @@ class ClientAppointmentsController < ApplicationController
     service.insert_event(params[:calendar_id], event)
 
     # redirect_to events_url(calendar_id: params[:calendar_id])
+  end
+
+  def available_rooms
+    date = "#{params[:year]}-#{params[:month]}-#{params[:day]} #{params[:hour]}:#{params[:minutes]}"
+    reservation_time = Time.zone.parse(date)
+    @consulting_rooms = ConsultingRoom.available_rooms(reservation_time)
+    @therapists = Therapist.available_therapists(reservation_time)
   end
 
   private

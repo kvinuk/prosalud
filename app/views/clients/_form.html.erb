@@ -53,6 +53,10 @@
     <%= f.select( :channel_id, Channel.all.collect {|c| [ c.name, c.id ] }, {}, class:"form-control")  %>
   </div>
   <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
+    <%= f.label :institution, "Institución" %>
+    <%= f.text_field :institution, class: "form-control", placeholder: "Secundaria ..."  %>
+  </div>
+  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
     <%= f.label :observations, "Observacions" %>
     <%= f.text_area :observations, class: "form-control", placeholder: "Observaciones"  %>
   </div>
