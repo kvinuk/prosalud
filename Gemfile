@@ -53,6 +53,8 @@ gem 'validates_timeliness', '~> 4.0'
 gem 'acts_as_bookable'
 gem 'ice_cube'
 
+#Calendar
+gem 'google-api-client', require: 'google/apis/calendar_v3'
 
 
 group :development, :test do

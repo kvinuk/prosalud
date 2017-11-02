@@ -3,8 +3,6 @@
   <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <%= link_to "Agregar", new_client_appointment_path, class: "btn btn-primary" %>
-      <%= link_to "Enlazar Google Calendar", redirect_path, class: "btn btn-primary" %>
-      <%= @authorization %>
     </div>
   </div>
   <br>
@@ -36,7 +34,11 @@
               <td>
                   <%= link_to edit_client_appointment_path(client_appointment), class: "btn btn-default" do %><%= image_tag "rsz_edit.png", class: "img-responsive" %><% end %>
                   <%= link_to client_appointment_path(client_appointment), class: "btn btn-default", method: :delete, data:{ confirm: "¿Estas seguro?" } do %><%= image_tag "rsz_trash.png", class: "img-responsive" %><% end %>
-
+                  <%= form_tag new_event_url(@calendar.id) do %>
+                    <%= hidden_field_tag :summary ,  client_appointment.client.full_name %>
+                    <%= hidden_field_tag :date ,  client_appointment.date %>
+                    <%= submit_tag 'Agregar evento' %>
+                  <% end %>
               </td>
             </tr>
           <% end %>
