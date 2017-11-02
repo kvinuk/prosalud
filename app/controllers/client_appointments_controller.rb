@@ -145,11 +145,14 @@ class ClientAppointmentsController < ApplicationController
       date_time = DateTime.parse(appointment.date.to_s)
 
       name_summary = appointment.client.full_name
-
+      description = appointment.service.name
+      location = appointment.consulting_room.name
       event = Google::Apis::CalendarV3::Event.new({
           start: Google::Apis::CalendarV3::EventDateTime.new(date_time: date_time),
           end: Google::Apis::CalendarV3::EventDateTime.new(date_time: date_time + 1.hours),
-          summary: name_summary
+          summary: name_summary,
+          description: description,
+          location: location
       })
 
       @new_event = service.insert_event(@calendar.id, event)
