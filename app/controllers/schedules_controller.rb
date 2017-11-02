@@ -18,7 +18,7 @@ class SchedulesController < ApplicationController
   def create
     @schedule = Schedule.new(schedule_params)
     if @schedule.save
-      redirect_to new_schedule_path
+      redirect_to schedules_path
     else
       flash.now[:danger] = @schedule.errors.full_messages
       render :new
@@ -30,7 +30,7 @@ class SchedulesController < ApplicationController
 
   def update
     if @schedule.update(schedule_params)
-      redirect_to new_schedule_path
+      redirect_to schedules_path
     else
       flash.now[:danger] = @schedule.errors.full_messages
       render :edit
@@ -39,6 +39,7 @@ class SchedulesController < ApplicationController
 
   def destroy
     @schedule.destroy
+    redirect_to schedules_path
   end
 
   private

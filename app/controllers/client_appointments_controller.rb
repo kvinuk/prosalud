@@ -34,6 +34,7 @@ class ClientAppointmentsController < ApplicationController
 
   def destroy
     @client_appointment.destroy
+    redirect_to client_appointments_path
   end
 
   def available_rooms

@@ -34,7 +34,12 @@
               <td><%= client_appointment.service.name || client_appointment.treatment.name %></td>
               <td><%= client_appointment.comments %></td>
               <td><%= client_appointment.price %></td>
-              <td><%= link_to "Reporte", new_appointment_report_path(client_appointment: client_appointment), class: "btn btn-default" %>
+              <td>
+                <% if client_appointment.appointment_report.nil? %>
+                  <%= link_to "Crear reporte", new_appointment_report_path(client_appointment: client_appointment), class: "btn btn-default" %>
+                <% else %>
+                  <%= link_to "Editar reporte", edit_appointment_report_path(client_appointment.appointment_report), class: "btn btn-default" %>
+                <% end %>
               </td>
               <td>
                   <%= link_to edit_client_appointment_path(client_appointment), class: "btn btn-default" do %><%= image_tag "rsz_edit.png", class: "img-responsive" %><% end %>

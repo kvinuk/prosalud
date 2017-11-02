@@ -8,6 +8,15 @@
     <%= f.label :therapist_assistance, "Asistió Terapeuta" %>
     <%= f.select :therapist_assistance, [["Si", true], ["No", false]].collect{|a| [a[0], a[1]]}, {}, {class: "form-control"} %>
   </div>
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group">
+      <%= f.label :start_hour, "Tiempo de inicio" %>
+      <%= f.datetime_select :start_hour, {order: [:day, :month, :year], use_month_numbers: true, ampm: true, start_year: Date.today.year - 1, start_hour: 7, end_hour: 19, end_year: Date.today.year + 1}, selected: Date.today %>
+  </div>
+  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
+    <%= f.label :delay_responsible, "Responsable del retraso" %>
+    <%= f.select :delay_responsible, [["Ninguno", "Ninguno"], ["Cliente", "Cliente"], ["Terapeuta", "Terapeuta"]].collect{|a| [a[0], a[1]]}, {}, {class: "form-control"} %>
+  </div>
+    <%= f.hidden_field :client_appointment_id%>
 </div>
 <%= f.submit ( f.object.new_record? ? "Crear" : "Editar"), class: "btn btn-primary" %>
 <% end %>

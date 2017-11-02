@@ -37,6 +37,7 @@ class ChannelsController < ApplicationController
 
   def destroy
     @channel.destroy
+    redirect_to channels_path
   end
 
   private
