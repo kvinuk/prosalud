@@ -136,8 +136,8 @@ class ClientAppointmentsController < ApplicationController
       @new_event = service.insert_event(@calendar.id, event)
       appointment.update_attribute(:event_id,@new_event.id)
     end
-
-    render :index
+    flash[:success] = ['Sincronización exitosa']
+    redirect_to client_appointments_path
 
   end
 
