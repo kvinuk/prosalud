@@ -12,7 +12,25 @@ class ClientAppointmentsController < ApplicationController
 
   def create
     @client_appointment = ClientAppointment.new(client_appointment_params)
-    if @client_appointment.save
+    @second_client_appointment = ClientAppointment.new(client_appointment_params)
+
+    case @client_appointment.threatment # a_variable is the variable we want to compare
+      when "Semanal"    #compare to 1
+        @second_client_appointment.date = @client_appointment.date + 1.week
+      when "Quincenal"     #compare to 2
+        @second_client_appointment.date = @client_appointment.date + 2.weeks
+      when "Mensual"     #compare to 2
+        @second_client_appointment.date = @client_appointment.date + 1.month
+    end
+  
+    if @client_appointment.save 
+      if @second_client_appointment.save
+
+        flash.now[:success] = ["Ambas citas han sido creadas"]
+      else
+        flash.now[:danger] = ["No se pudo crear la próxima cita"]
+
+      end
       redirect_to client_appointments_path
     else
       flash.now[:danger] = @client_appointment.errors.full_messages
