@@ -34,12 +34,12 @@ class ClientAppointmentsController < ApplicationController
     @client_appointment = ClientAppointment.new(client_appointment_params)
     @second_client_appointment = ClientAppointment.new(client_appointment_params)
 
-    case @client_appointment.threatment # a_variable is the variable we want to compare
-      when "Semanal"    #compare to 1
+    case @client_appointment.treatment 
+      when "Semanal"
         @second_client_appointment.date = @client_appointment.date + 1.week
-      when "Quincenal"     #compare to 2
+      when "Quincenal"
         @second_client_appointment.date = @client_appointment.date + 2.weeks
-      when "Mensual"     #compare to 2
+      when "Mensual"
         @second_client_appointment.date = @client_appointment.date + 1.month
     end
   
@@ -201,7 +201,7 @@ class ClientAppointmentsController < ApplicationController
 
   def client_appointment_params
     params.require(:client_appointment).permit(:client_id, :therapist_id, :consulting_room_id, 
-                                               :service_id, :date, :status, :comments, :threatment_id)
+                                               :service_id, :date, :status, :comments, :treatment)
   end
 
   def set_client_appointment

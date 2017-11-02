@@ -3,9 +3,8 @@ class ClientAppointment < ApplicationRecord
   belongs_to :therapist
   belongs_to :consulting_room
   belongs_to :service, optional: true
-  belongs_to :treatment, optional: true
   has_one :appointment_report, dependent: :destroy
-  validates :status, :client, :therapist, :date, presence: true
+  validates :status, :client, :therapist, :date, :treatment, presence: true
   validates_numericality_of :price
 
   validates_date :date, on_or_after: :today,
