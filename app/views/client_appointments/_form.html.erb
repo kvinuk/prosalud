@@ -21,8 +21,8 @@
       <%= f.select :service_id, Service.all.collect { |c| [ c.name, c.id ] }, { include_blank: true }, class: "chosen-select form-control" %>
     </div>
     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
-      <%= f.label :treatment_id, "Tratamiento" %>
-      <%= f.select :treatment_id, Treatment.all.collect { |c| [ c.id, c.id ] }, { include_blank: true }, class: "chosen-select form-control" %>
+      <%= f.label :treatment, "Tratamiento" %>
+      <%= f.select :treatment, ["Semanal", "Quincenal", "Mensual"], {}, class: "chosen-select form-control" %>
     </div>
     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
       <%= f.label :status, "Estatus" %>

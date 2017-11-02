@@ -1,7 +1,6 @@
 class Treatment < ApplicationRecord
   belongs_to :client
   belongs_to :therapist
-  has_many :client_appointments
 
   validates :start_date, :end_date, :client, :therapist, presence: true
 
