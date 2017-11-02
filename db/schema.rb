@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20171102155058) do
+=======
+ActiveRecord::Schema.define(version: 20171028194210) do
+>>>>>>> master
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +32,17 @@ ActiveRecord::Schema.define(version: 20171102155058) do
     t.datetime "created_at"
     t.index ["bookable_type", "bookable_id"], name: "index_acts_as_bookable_bookings_bookable", using: :btree
     t.index ["booker_type", "booker_id"], name: "index_acts_as_bookable_bookings_booker", using: :btree
+  end
+
+  create_table "appointment_reports", force: :cascade do |t|
+    t.boolean  "client_assistance"
+    t.boolean  "therapist_assistance"
+    t.datetime "start_hour"
+    t.string   "delay_responsible"
+    t.integer  "client_appointment_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.index ["client_appointment_id"], name: "index_appointment_reports_on_client_appointment_id", using: :btree
   end
 
   create_table "channels", force: :cascade do |t|
@@ -156,6 +171,7 @@ ActiveRecord::Schema.define(version: 20171102155058) do
     t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
   end
 
+  add_foreign_key "appointment_reports", "client_appointments"
   add_foreign_key "client_appointments", "clients"
   add_foreign_key "client_appointments", "consulting_rooms"
   add_foreign_key "client_appointments", "services"

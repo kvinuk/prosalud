@@ -4,6 +4,7 @@ class ClientAppointment < ApplicationRecord
   belongs_to :consulting_room
   belongs_to :service, optional: true
   belongs_to :treatment, optional: true
+  has_one :appointment_report, dependent: :destroy
   validates :status, :client, :therapist, :date, presence: true
   validates_numericality_of :price
 
