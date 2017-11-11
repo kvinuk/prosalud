@@ -57,6 +57,9 @@ gem 'ice_cube'
 #Calendar
 gem 'google-api-client', require: 'google/apis/calendar_v3'
 
+#chosen-select
+gem 'chosen-rails'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

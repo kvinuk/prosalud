@@ -28,6 +28,14 @@ class ClientAppointmentsController < ApplicationController
 
   def new
     @client_appointment = ClientAppointment.new
+    reservation_time = Time.zone.now
+    if reservation_time.min <= 30
+      reservation_time = reservation_time + (30 - reservation_time.min).minutes
+    else
+      reservation_time = reservation_time + (60 - reservation_time.min).minutes
+    end
+    @consulting_rooms = ConsultingRoom.available_rooms(reservation_time)
+    @therapists = Therapist.available_therapists(reservation_time)
   end
 
   def create

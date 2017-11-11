@@ -14,10 +14,22 @@ class Therapist < ApplicationRecord
       appointment_datetime = appointment.date
       return false if reservation_check(reservation_date, appointment_datetime, duration)
     end
+    return false if !schedule_check(reservation_date)
     true
   end
 
   private
+
+  def schedule_check(reservation_date)
+    wday = reservation_date.wday
+    day_schedules = schedules.select {|schedule| schedule.day_of_week == wday }
+    day_schedules.each do |schedule|
+      if reservation_date.hour.between?(schedule.start_time.hour, schedule.end_time.hour) && (reservation_date + 1.hours).hour.between?(schedule.start_time.hour, schedule.end_time.hour)
+        return true
+      end
+    end
+    false
+  end
 
   def reservation_check(reservation_date, appointment_datetime, duration)
     appoinment_end_time = appointment_datetime + duration - 1.seconds
