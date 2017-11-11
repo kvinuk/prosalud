@@ -23,10 +23,10 @@ class User < ApplicationRecord
         self.add_role :receptionist
       when "Psicologo"
         self.add_role :therapist
-        Therapist.create(user: self)
+        Therapist.create(user: self, therapist_type: "psicologo")
       when "Nutriologo"
         self.add_role :therapist 
-        Therapist.create(user: self)
+        Therapist.create(user: self, therapist_type: "nutriologo")
     end
   end
 
