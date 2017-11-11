@@ -18,4 +18,14 @@ class Client < ApplicationRecord
   def full_address
     street + ", " + neighborhood + " C.P. " + zipcode.to_s + " " + city
   end
+
+  def active?
+    appointment_reports = AppointmentReport.where(client_appointment_id: client_appointments.map(&:id)).last(4)
+    if(appointment_reports.length >= 4)
+      appointment_reports.map(&:client_assistance).count(true) > 0  
+    else
+      true
+    end
+  end 
+
 end
