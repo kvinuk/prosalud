@@ -24,4 +24,7 @@ Rails.application.routes.draw do
   get '/sync', to: 'client_appointments#sync', as: 'sync'
   get '/events/:calendar_id', to: 'client_appointments#events', as: 'events', calendar_id: /[^\/]+/
   post '/events/:calendar_id', to: 'client_appointments#new_event', as: 'new_event', calendar_id: /[^\/]+/
+
+  #reports
+  get '/reports', to: 'reports#index', as: 'reports'
 end
