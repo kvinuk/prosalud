@@ -59,6 +59,10 @@ GEM
     builder (3.2.3)
     byebug (9.1.0)
     cancancan (2.0.0)
+    chosen-rails (1.5.2)
+      coffee-rails (>= 3.2)
+      railties (>= 3.0)
+      sass-rails (>= 3.2)
     codeclimate-engine-rb (0.4.0)
       virtus (~> 1.0)
     coercible (1.0.0)
@@ -317,6 +321,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.3.6)
   byebug
   cancancan (~> 2.0)
+  chosen-rails
   coffee-rails (~> 4.2)
   database_cleaner
   devise

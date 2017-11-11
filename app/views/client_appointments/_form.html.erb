@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 form-group">
       <%= f.label :client_id, "Folio cliente" %>
-      <%= f.select :client_id, Client.all.collect { |c| [ "#{c.full_name} (#{c.folio})", c.id ] }, { include_blank: false }, class: "chosen-select form-control" %>
+      <%= f.select :client_id, Client.all.collect { |c| [ "#{c.full_name} ( #{c.folio} )", c.id ] }, { include_blank: false }, class: "chosen-select" %>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group" id="fecha">
       <%= f.label :date, "Fecha" %>
@@ -10,23 +10,23 @@
     </div>
     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
       <%= f.label :consulting_room_id, "Consultorio" %>
-      <%= f.select :consulting_room_id, ConsultingRoom.all.collect { |c| [ c.name, c.id ] }, { include_blank: false }, class: "chosen-select form-control", id: "consulting_rooms" %>
+      <%= f.select :consulting_room_id, @consulting_rooms.collect { |c| [ c.name, c.id ] }, { include_blank: false }, class: "form-control", id: "consulting_rooms" %>
     </div>
     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
       <%= f.label :therapist_id, "Terapeuta" %>
-      <%= f.select :therapist_id, Therapist.all.collect { |c| [ c.user.name, c.id ] }, { include_blank: false }, class: "chosen-select form-control", id: "therapists" %>
+      <%= f.select :therapist_id, @therapists.collect { |c| [ c.user.name, c.id ] }, { include_blank: false }, class: "form-control", id: "therapists" %>
     </div>
     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
       <%= f.label :service_id, "Servicio" %>
-      <%= f.select :service_id, Service.all.collect { |c| [ c.name, c.id ] }, { include_blank: true }, class: "chosen-select form-control" %>
+      <%= f.select :service_id, Service.all.collect { |c| [ c.name, c.id ] }, { include_blank: true }, class: "form-control" %>
     </div>
     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
       <%= f.label :treatment, "Tratamiento" %>
-      <%= f.select :treatment, ["Semanal", "Quincenal", "Mensual"], {}, class: "chosen-select form-control" %>
+      <%= f.select :treatment, ["Semanal", "Quincenal", "Mensual"], {}, class: "form-control" %>
     </div>
     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 form-group">
       <%= f.label :status, "Estatus" %>
-      <%= f.select :status, ["Pendiente", "Cerrado"], { include_blank: false }, class: "chosen-select form-control" %>
+      <%= f.select :status, ["Pendiente", "Cerrado"], { include_blank: false }, class: "form-control" %>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group">
       <%= f.label :comments, "Comentarios" %>
