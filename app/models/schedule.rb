@@ -12,4 +12,19 @@ class Schedule < ApplicationRecord
   def self.work_days
     %w[Lunes Martes Miércoles Jueves Viernes]
   end
+
+  def day_of_week
+    case week_day
+    when "Lunes"
+      1
+    when "Martes"
+      2
+    when "Miércoles"
+      3
+    when "Jueves"
+      4
+    when "Viernes"
+      5
+    end
+  end
 end
