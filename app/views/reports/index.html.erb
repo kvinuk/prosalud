@@ -21,11 +21,21 @@
       <thead>
         <tr>
           <th>Consultas totales</th>
+          <th>Consultas de psicología</th>
+          <th>Consultas de nutrición</th>
+          <th>Ingreso Total</th>
+          <th>Ingreso de psicología</th>
+          <th>Ingreso de nutrición</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td><%= @appointments.count %></td>
+          <th><%= @appointments.map(&:appointment_type).count("psicologo") %></th>
+          <th><%= @appointments.map(&:appointment_type).count("nutriologo") %></th>
+          <th>$<%= @appointments.sum("price") %></th>
+          <th>$<%= @appointments.where(therapist_id: Therapist.all.where(therapist_type: "psicologo").map(&:id)).sum("price") %></th>
+          <th><%= @appointments.where(therapist_id: Therapist.all.where(therapist_type: "nutriologo").map(&:id)).sum("price") %></th>
         </tr>
       </tbody>
     </table>

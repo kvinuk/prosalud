@@ -10,6 +10,11 @@ class ClientAppointment < ApplicationRecord
   validates_date :date, on_or_after: :today,
                         on_or_after_message: 'date must be after today'
 
+
+  def appointment_type
+    therapist.therapist_type
+  end
+
   def self.status
     %w[Pendiente Finalizada]
   end
@@ -17,4 +22,6 @@ class ClientAppointment < ApplicationRecord
   before_validation do
     self.price = service.price(client) if !price
   end
+
+
 end
