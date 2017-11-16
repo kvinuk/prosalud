@@ -22,5 +22,6 @@
 //= require pickadate/picker.time 
 //= require pickadate/translations/es_ES
 //= require chosen-jquery
-//= require_tree .
+//= require chosen
+//= require client_appointments
 
