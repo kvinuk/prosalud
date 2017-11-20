@@ -11,6 +11,11 @@ class ClientAppointment < ApplicationRecord
                         on_or_after_message: 'date must be after today'
 
 
+
+  def client_name
+    client.fname + " " + client.lname
+  end
+
   def appointment_type
     therapist.therapist_type
   end
