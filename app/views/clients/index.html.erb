@@ -36,7 +36,7 @@
               <td><%= client.tutor_name %></td>
               <td><%= client.contact_date %></td>
               <td><%= client.channel.name %></td>
-              <td><%= client.institution %></td>
+              <td><%= client.active? %></td>
               <td align="center">
                   <%= link_to edit_client_path(client), class: "btn btn-default" do %><%= image_tag "rsz_edit.png", class: "img-responsive" %><% end %>
                   <%= link_to client_path(client), class: "btn btn-default", method: :delete, data:{ confirm: "¿Estas seguro que desea eliminar a " + client.fname + "?" } do %><%= image_tag "rsz_trash.png", class: "img-responsive" %><% end %>
