@@ -140,13 +140,24 @@ class ClientAppointmentsController < ApplicationController
     @event_list = service.list_events(@calendar.id)
 
     @client_appointments = ClientAppointment.all
+    @event_list = service.list_events(@calendar.id)
 
     @client_appointments.each do |appointment|
+      event_present = false
+      event_id = nil
       unless appointment.event_id.blank?
-        @get_event = service.get_event(@calendar.id, appointment.event_id)
-        unless @get_event.status == 'cancelled'
+        @event_list.items.each do |event| 
+          if event.id == appointment.event_id
+            event_present = true 
+          end
+        end
+        event_id = appointment.event_id
+
+        if event_present
+          @get_event = service.get_event(@calendar.id, appointment.event_id)
           service.delete_event(@calendar.id, appointment.event_id)
         end
+
         appointment.update_attribute(:event_id,nil)
         # puts 'delete event'+appointment.event_id.blank?
       end
@@ -162,8 +173,23 @@ class ClientAppointmentsController < ApplicationController
           description: description,
           location: location
       })
+      unless event_id.nil?
+        event = Google::Apis::CalendarV3::Event.new({
+          start: Google::Apis::CalendarV3::EventDateTime.new(date_time: date_time),
+          end: Google::Apis::CalendarV3::EventDateTime.new(date_time: date_time + 1.hours),
+          summary: name_summary,
+          description: description,
+          location: location,
+          id: event_id
+        })
+      end
 
-      @new_event = service.insert_event(@calendar.id, event)
+      if event_present
+        @new_event = service.update_event(@calendar.id, event_id, event)
+      else
+        @new_event = service.insert_event(@calendar.id, event)
+      end
+      
       appointment.update_attribute(:event_id,@new_event.id)
     end
     flash[:success] = ['Sincronización exitosa']
