@@ -67,6 +67,8 @@ class ClientAppointmentsController < ApplicationController
   end
 
   def edit
+    @consulting_rooms = ConsultingRoom.all
+    @therapists = Therapist.all
   end
 
   def update
